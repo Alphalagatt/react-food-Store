@@ -1,6 +1,11 @@
+import Card from "../Components/Card";
+import '../Components/ComponentCss/CardStyling.css'
+
 function Home(){
     return(
-        <div>This is my home Page</div>
+        <div className='parent'>
+            <Card/>
+        </div>
     )
 }
 export default Home;
