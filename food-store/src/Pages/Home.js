@@ -1,10 +1,10 @@
-import Card from "../Components/Card";
-import '../Components/ComponentCss/CardStyling.css'
+import { Login } from '../Components/Login/Login';
+import './home.css';
 
 function Home(){
     return(
-        <div className='parent'>
-            <Card/>
+        <div >
+            <Login/>
         </div>
     )
 }

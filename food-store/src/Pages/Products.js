@@ -1,27 +1,40 @@
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment, multiply } from "../Components/ComponentCss/ReduxTools/Actions";
+import { AddProduct, DeleteProduct, } from "../Components/ReduxTools/Actions";
 
 function Products(){
-    const counter = useSelector(state => state.counter); 
+
+    const idRef = useRef();
+    const prodNameRef = useRef();
+    const myProducts = useSelector(prod=>prod.products);
     const dispatch = useDispatch();
-    function add(){
-        dispatch(increment());
+
+    function addProdHandler(){
+        dispatch(AddProduct(idRef.current.value,prodNameRef.current.value)); 
     }
-    function remove(){
-        dispatch(decrement());
-    }
-    function mult(){
-        dispatch(multiply());
-    }
-    return(
+    
+
+    return <div>
+        <h1>This is my products page..</h1>
+        <p>Add a product here</p>
+        <label htmlFor='id'>Product Id:</label>
+        <input type='text' ref={idRef} id='id' />
+        <label htmlFor='name'>Product Name:</label>
+        <input type = 'text' ref={prodNameRef} id='name'/>
+        <button onClick={addProdHandler} >Add Product</button>
+
         <div>
-            <p>This is my products page..</p>
-            <button onClick={add}>+</button>
-            <p>Counter {counter} <button onClick={mult}>x2</button> </p>
-            <button onClick={remove}>-</button>
-            
+            <ul>
+                {myProducts.map(prod => {
+                    return<li>{prod.id}  {prod.prodName} <button onClick = {deleteProd}>Delete Product</button></li>
+
+                    function deleteProd(){
+                        dispatch(DeleteProduct(prod.id));
+                    }
+                })}
+            </ul>
         </div>
-    )
+        </div>
 }
 
 export default Products;

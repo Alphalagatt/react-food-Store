@@ -1,6 +1,9 @@
+import '../Components/ComponentCss/Cart.css';
 function Cart(){
     return(
-        <div>This is my cart..</div>
+        <div>
+            
+        </div>
     )
 }
 
